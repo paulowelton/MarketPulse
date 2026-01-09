@@ -2,7 +2,7 @@
 
 📊 Plataforma para análise e visualização de dados de mercado em tempo real.
 
-<img src="https://i.ibb.co/TMM4FYGD/logo-market-Pulse-1-removebg-preview.png" alt="Logo">
+<img src="frontend/public/logo.png" alt="Logo">
 
 O MarketPulse é uma aplicação web que coleta, processa e exibe dados de mercado
 para apoiar tomada de decisão.
