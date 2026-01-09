@@ -1,0 +1,17 @@
+<section class="p-10">
+    <h1 class="relative text-4xl font-bold inline-block">
+        Ações do Brasil
+        <span class="absolute left-0 -bottom-1 w-full h-0.5 bg-[#000]"></span>
+    </h1>
+
+
+
+    <div class="flex justify-around py-15">
+        <app-asset-table title="Em Alta" [rows]="stocks"></app-asset-table>
+        <app-asset-table title="Em Baixa" [rows]="stocks"></app-asset-table>
+        <app-asset-table title="Maior Volume" [rows]="stocks"></app-asset-table>
+        <!-- <app-asset-table title="Em Baixa"></app-asset-table>
+        <app-asset-table title="Maior Volume"></app-asset-table> -->
+    </div>
+
+</section> 
