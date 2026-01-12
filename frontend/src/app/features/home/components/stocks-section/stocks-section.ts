@@ -17,5 +17,4 @@ export class StocksSection {
     { imageUrl: 'https://icons.brapi.dev/icons/CASH.svg', ticker: 'CASH3', variation:6.9, price: 7.6 },
     { imageUrl: 'https://icons.brapi.dev/icons/CMIG.svg', ticker: 'CMIG3', variation:-0.1, price: 10.6 },
   ];
-
 }
