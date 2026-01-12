@@ -1,0 +1,20 @@
+<div class="border border-slate-200 rounded-2xl px-8 py-1 shadow-lg flex flex-col gap-2">
+    <h3 class="text-slate-400 font-medium text-sm flex items-center gap-2">
+        <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+        {{title}}
+    </h3>
+    <div class="flex items-baseline gap-3">
+        <span class="text-5xl font-bold text-slate-800 tracking-tighter">
+            {{value}}
+        </span>
+        @if (variation > 0){
+            <span class="text-emerald-400 text-sm font-semibold">
+                <span>+{{variation}}%</span>
+            </span>
+        }@else if (variation < 0) {
+            <span class="text-red-400 text-sm font-semibold">
+                <span>{{variation}}%</span>
+            </span>
+        }
+    </div>
+</div>

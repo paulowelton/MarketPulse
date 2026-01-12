@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { AssetTable } from "../../../../shared/components/asset-table/asset-table";
+import { Kpi } from '../../../../shared/components/kpi/kpi';
 
 @Component({
   selector: 'app-stocks-section',
-  imports: [AssetTable],
+  imports: [AssetTable, Kpi],
   templateUrl: './stocks-section.html',
   styleUrl: './stocks-section.css',
 })
