@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Kpi } from './kpi';
+import { Kpi } from './kpi-card';
 
 describe('Kpi', () => {
   let component: Kpi;

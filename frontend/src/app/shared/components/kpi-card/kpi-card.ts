@@ -2,10 +2,10 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-kpi',
+  selector: 'app-kpi-card',
   imports: [CommonModule],
-  templateUrl: './kpi.html',
-  styleUrl: './kpi.css',
+  templateUrl: './kpi-card.html',
+  styleUrl: './kpi-card.css',
 })
 export class Kpi {
 

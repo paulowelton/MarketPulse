@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AssetTable } from "../../../../shared/components/asset-table/asset-table";
-import { Kpi } from '../../../../shared/components/kpi/kpi';
+import { Kpi } from '../../../../shared/components/kpi-card/kpi-card';
 
 @Component({
   selector: 'app-stocks-section',
