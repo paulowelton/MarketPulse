@@ -2,16 +2,20 @@ import requests, os, dotenv
 
 dotenv.load_dotenv()
 
-def list_stocks():
-    endpoint = f'https://brapi.dev/api/quote/list/'
-    
-    response = requests.get(endpoint, params={
-        'Authorization': f'Bearer {os.getenv("BRAPI_API_KEY")}'
-    })
-    
-    stocks = response.json()['stocks']
-    
-    return stocks
+HEADERS = {
+    'Authorization': f'Bearer {os.getenv("BRAPI_API_KEY")}'
+}
 
-if __name__ == '__main__':
-    list_stocks()
+BASE_URL = 'https://brapi.dev/api'
+
+def list_stocks():
+    res = requests.get(f'{BASE_URL}/quote/list', headers=HEADERS)
+    return res.json().get('stocks', [])
+
+def list_segments():
+    res = requests.get(f'{BASE_URL}/quote/list', headers=HEADERS)
+    return res.json().get('availableSectors', [])
+
+def stock_details(ticker: str):
+    res = requests.get(f'{BASE_URL}/quote/{ticker}', headers=HEADERS)
+    return res.json().get('results', [])
