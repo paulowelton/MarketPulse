@@ -1,21 +1,13 @@
-import requests, os, dotenv
-
-dotenv.load_dotenv()
-
-HEADERS = {
-    'Authorization': f'Bearer {os.getenv("BRAPI_API_KEY")}'
-}
-
-BASE_URL = 'https://brapi.dev/api'
+from api.clients.brapi_client import get
 
 def list_stocks():
-    res = requests.get(f'{BASE_URL}/quote/list', headers=HEADERS)
-    return res.json().get('stocks', [])
+    data = get('/quote/list/')
+    return data.get('stocks', []) if data else []
 
 def list_segments():
-    res = requests.get(f'{BASE_URL}/quote/list', headers=HEADERS)
-    return res.json().get('availableSectors', [])
+    data = get('/quote/list/')
+    return data.get('availableSectors', []) if data else []
 
 def stock_details(ticker: str):
-    res = requests.get(f'{BASE_URL}/quote/{ticker}', headers=HEADERS)
-    return res.json().get('results', [])
+    data = get(f'/quote/{ticker}')
+    return data.get('results', []) if data else []
