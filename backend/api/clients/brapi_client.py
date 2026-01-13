@@ -1,9 +1,10 @@
 import requests, os
 from requests.exceptions import RequestException
+from typing import Union
 
 BASE_URL = 'https://brapi.dev/api'
 
-def get(endpoint: str, params: dict | None = None):
+def get(endpoint: str, params: Union[dict,None] = None):
     try:
         response = requests.get(
             f'{BASE_URL}{endpoint}',
