@@ -17,21 +17,21 @@
                     <tr class="group hover:bg-slate-50 transition-colors rounded-lg">
                         <td class="px-4 py-3">
                             <div class="flex items-center gap-3">
-                                <img [src]="row.imageUrl" [alt]="row.ticker" class="w-8 h-8 rounded-full bg-slate-100 object-cover border border-slate-200">
-                                <span class="font-bold text-slate-700">{{row.ticker}}</span>
+                                <img [src]="row.logo" [alt]="row.ticker" class="w-8 h-8 rounded-full bg-slate-100 object-cover border border-slate-200">
+                                <span class="font-bold text-slate-700">{{row.stock}}</span>
                             </div>
                         </td>
                         
                         <td class="px-4 py-3 text-center">
-                            @if (row.variation > 0){
-                                <span class="font-mono font-medium text-green-600">+{{row.variation}}</span>
+                            @if (row.change > 0){
+                                <span class="font-mono font-medium text-green-600">+{{row.change}}</span>
                             } @else{
-                                <span class="font-mono font-medium text-red-600">{{row.variation}}</span>
+                                <span class="font-mono font-medium text-red-600">{{row.change}}</span>
                             }
                         </td>
 
                         <td class="px-4 py-3 text-center">
-                            <span class="font-mono font-medium text-slate-900">{{row.price}}</span>
+                            <span class="font-mono font-medium text-slate-900">{{row.close}}</span>
                         </td>
                     </tr>
                 }

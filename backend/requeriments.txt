@@ -2,3 +2,4 @@ flask
 requests
 dotenv
 Flask-Caching
+flask-cors

@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 export class Kpi {
 
   @Input() title: string = '';
-  @Input() value: string = '';
+  @Input() value: Number | null = 0;
   @Input() variation: any = '';
 
 }

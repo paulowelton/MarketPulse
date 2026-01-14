@@ -10,6 +10,6 @@ import {CommonModule} from '@angular/common';
 export class AssetTable {
 
   @Input() title: string = '';
-  @Input() rows: any[] = [];
+  @Input() rows: any[] | null = [];
 
 }

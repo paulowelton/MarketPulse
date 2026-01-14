@@ -1,5 +1,6 @@
 from flask import Flask
 from api.extensions import cache
+from flask_cors import CORS
 from api.routes.stocks import stocks_bp
 
 config = {
@@ -8,6 +9,7 @@ config = {
     "CACHE_DEFAULT_TIMEOUT": 300
 }
 app = Flask(__name__)
+CORS(app)
 app.config.from_mapping(config)
 cache.init_app(app)
 
