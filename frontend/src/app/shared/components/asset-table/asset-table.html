@@ -24,9 +24,12 @@
                         
                         <td class="px-4 py-3 text-center">
                             @if (row.change > 0){
-                                <span class="font-mono font-medium text-green-600">+{{row.change}}</span>
-                            } @else{
-                                <span class="font-mono font-medium text-red-600">{{row.change}}</span>
+                                <span class="font-mono font-medium text-green-600">+{{row.change.toFixed(2)}}%</span>
+                            }@else if(row.change < 0){
+                                <span class="font-mono font-medium text-red-600">{{row.change.toFixed(2)}}%</span>
+                            } 
+                            @else{
+                                <span class="font-mono font-medium">{{row.change.toFixed(2)}}</span>
                             }
                         </td>
 

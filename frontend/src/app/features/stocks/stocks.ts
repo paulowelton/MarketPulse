@@ -3,10 +3,11 @@ import { Header } from "../../core/layout/header/header";
 import { Footer } from "../../core/layout/footer/footer";
 import { Kpi } from "../../shared/components/kpi-card/kpi-card";
 import { Hero } from "./components/hero/hero";
+import { StocksTable } from "./components/stocks-table/stocks-table";
 
 @Component({
   selector: 'app-stocks',
-  imports: [Header, Footer, Hero],
+  imports: [Header, Footer, Hero, StocksTable],
   templateUrl: './stocks.html',
   styleUrl: './stocks.css',
 })
