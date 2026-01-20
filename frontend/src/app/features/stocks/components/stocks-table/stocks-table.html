@@ -1,9 +1,36 @@
 <section class="p-6 bg-white shadow-sm border border-slate-200">
   <div class="overflow-x-auto">
     <div class="flex gap-4">
-      <button (click)="mostTradedStocks()" class="cursor-pointer bg-slate-900 text-white rounded-2xl px-3 py-1 duration-300 hover:bg-slate-950">Mais Negociados</button>
-      <button class="cursor-pointer bg-slate-900 text-white rounded-2xl px-3 py-1 duration-300 hover:bg-slate-950">Maiores Baixas</button>
-      <button class="cursor-pointer bg-slate-900 text-white rounded-2xl px-3 py-1 duration-300 hover:bg-slate-950">Maiores Altas</button>
+      
+      <button 
+      (click)="setFilter('gainers')"
+      [ngClass]="{
+        'bg-slate-950': (filter | async) === 'gainers',
+        'bg-slate-800': (filter | async) !== 'gainers'
+      }"
+      class="cursor-pointer text-white rounded-2xl px-3 py-1 duration-300 hover:bg-slate-850">
+      Maiores Altas
+      </button>
+      
+      <button 
+      (click)="setFilter('losers')"
+      [ngClass]="{
+        'bg-slate-950': (filter | async) === 'losers',
+        'bg-slate-800': (filter | async) !== 'losers'
+      }"
+      class="cursor-pointer text-white rounded-2xl px-3 py-1 duration-300 hover:bg-slate-850">
+      Maiores Baixas
+      </button>
+      
+      <button 
+      (click)="setFilter('mostTraded')"
+      [ngClass]="{
+        'bg-slate-950': (filter | async) === 'mostTraded',
+        'bg-slate-800': (filter | async) !== 'mostTraded'
+      }"
+      class="cursor-pointer text-white rounded-2xl px-3 py-1 duration-300 hover:bg-slate-850">
+      Mais Negociados
+      </button>
     </div>
     <table class="w-full text-left border-collapse">
       <thead>

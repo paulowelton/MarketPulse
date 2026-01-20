@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StocksService } from '../../../../core/services/stocks-service';
 import { Observable, combineLatest, map, BehaviorSubject } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
@@ -14,10 +14,10 @@ export class StocksTable implements OnInit {
   stocks$!: Observable<any[]>;
 
   currentPage = new BehaviorSubject<number>(1);
-  limitItems = 12;
+  limitItems = 8;
   totalPages = 0;
 
-  mostTraded = new BehaviorSubject<boolean>(false);
+  filter = new BehaviorSubject<string>('default');
 
   constructor(private stocksService: StocksService) {}
 
@@ -31,11 +31,19 @@ export class StocksTable implements OnInit {
     this.stocks$ = combineLatest([
       this.allStocks$,
       this.currentPage,
-      this.mostTraded
+      this.filter
     ]).pipe(
-      map(([stocks, currentPage, mostTraded]) => {
-        if (mostTraded){
-          const copia = stocks.sort((a,b) => b.market_cap - a.market_cap)
+      map(([stocks, currentPage, filter]) => {
+        if (filter === 'mostTraded'){
+          const copia = [...stocks].sort((a,b) => b.volume - a.volume)
+          stocks = copia
+        }
+        if (filter === 'gainers'){
+          const copia = [...stocks].sort((a,b) => b.change - a.change)
+          stocks = copia
+        }
+        if (filter === 'losers'){
+          const copia = [...stocks].sort((a,b) => a.change - b.change)
           stocks = copia
         }
 
@@ -58,8 +66,8 @@ export class StocksTable implements OnInit {
     }
   }
 
-  mostTradedStocks(){
-      this.currentPage.next(1)
-      this.mostTraded.next(true)
+  setFilter(filter: string){
+    this.filter.next(filter)
   }
+
 }
