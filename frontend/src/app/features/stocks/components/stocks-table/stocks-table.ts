@@ -11,45 +11,57 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 })
 export class StocksTable implements OnInit {
   allStocks$ = new BehaviorSubject<any[]>([]);
+  allSegments$ = new BehaviorSubject<any[]>([]);
   stocks$!: Observable<any[]>;
 
   currentPage = new BehaviorSubject<number>(1);
   limitItems = 8;
   totalPages = 0;
 
-  filter = new BehaviorSubject<string>('default');
+  filter = new BehaviorSubject<string>('Default');
+  segment = new BehaviorSubject<string>('Default');
 
   constructor(private stocksService: StocksService) {}
 
   ngOnInit(): void {
     this.stocksService.getStocks().subscribe(data => {
-      this.allStocks$.next(data)
-      this.totalPages = Math.ceil(data.length / this.limitItems)
-      
+      this.allStocks$.next(data);      
+    })
+
+    this.stocksService.getSegments().subscribe(data => {
+      this.allSegments$.next(data);
     })
     
     this.stocks$ = combineLatest([
       this.allStocks$,
       this.currentPage,
-      this.filter
+      this.segment,
+      this.filter,
     ]).pipe(
-      map(([stocks, currentPage, filter]) => {
+      map(([stocks, currentPage, segment, filter]) => {
+        if (segment != 'Default'){
+          stocks = stocks.filter(stock => stock.sector === segment);
+        }
+
         if (filter === 'mostTraded'){
-          const copia = [...stocks].sort((a,b) => b.volume - a.volume)
-          stocks = copia
+          const copia = [...stocks].sort((a,b) => b.volume - a.volume);
+          stocks = copia;
         }
         if (filter === 'gainers'){
-          const copia = [...stocks].sort((a,b) => b.change - a.change)
-          stocks = copia
+          const copia = [...stocks].sort((a,b) => b.change - a.change);
+          stocks = copia;
         }
         if (filter === 'losers'){
-          const copia = [...stocks].sort((a,b) => a.change - b.change)
-          stocks = copia
+          const copia = [...stocks].sort((a,b) => a.change - b.change);
+          stocks = copia;
         }
+
+        this.totalPages = Math.ceil(stocks.length / this.limitItems);
 
         const start = (currentPage - 1) * this.limitItems;
         const end = (start + this.limitItems);
-        return stocks.slice(start, end)
+        
+        return stocks.slice(start, end);
       })
     )
   }
@@ -66,8 +78,14 @@ export class StocksTable implements OnInit {
     }
   }
 
-  setFilter(filter: string){
-    this.filter.next(filter)
+  setFilter(filter: string) {
+    this.currentPage.next(1);
+    this.filter.next(filter);
+  }
+
+  setSegment(segment: string) {
+    this.currentPage.next(1);
+    this.segment.next(segment);
   }
 
 }
