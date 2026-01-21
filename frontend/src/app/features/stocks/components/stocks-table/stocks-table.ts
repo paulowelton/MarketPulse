@@ -20,6 +20,7 @@ export class StocksTable implements OnInit {
 
   filter = new BehaviorSubject<string>('Default');
   segment = new BehaviorSubject<string>('Default');
+  search = new BehaviorSubject<string>('');
 
   constructor(private stocksService: StocksService) {}
 
@@ -37,10 +38,16 @@ export class StocksTable implements OnInit {
       this.currentPage,
       this.segment,
       this.filter,
+      this.search
     ]).pipe(
-      map(([stocks, currentPage, segment, filter]) => {
+      map(([stocks, currentPage, segment, filter, search]) => {
         if (segment != 'Default'){
           stocks = stocks.filter(stock => stock.sector === segment);
+        }
+
+        if (search.trim() !== ''){
+          const term = search.toLowerCase();
+          stocks = stocks.filter(stock => stock.stock?.toLowerCase().includes(term))
         }
 
         if (filter === 'mostTraded'){
@@ -86,6 +93,11 @@ export class StocksTable implements OnInit {
   setSegment(segment: string) {
     this.currentPage.next(1);
     this.segment.next(segment);
+  }
+
+  setSearch(term: string){
+    this.currentPage.next(1);
+    this.search.next(term);
   }
 
 }
