@@ -1,10 +1,11 @@
 <section class="p-6 bg-white shadow-sm border border-slate-200">
   <div class="overflow-x-auto">
-    <div class="flex gap-4">
+    <div class="flex aligm-center gap-4">
       <input
         type="text"
         placeholder="Buscar ação..."
         (input)="setSearch($event.target.value)"
+        class="border border-slate-300 rounded-2xl px-1 shadow-sm font-medium"
       />
       
       <button 
@@ -46,6 +47,8 @@
           <option [value]="segment">{{ segment }}</option> 
         }
       </select>
+
+      <span (click)="clearFilter()" class="cursor-pointer text-blue-600 duration-300 hover:text-blue-800">Limpar Filtros</span>
 
     </div>
     <table class="w-full text-left border-collapse">
@@ -108,7 +111,7 @@
             </td>
             
             <td class="py-4 px-4 text-center">
-                <a [href]="['/acoes', row.stock]" 
+                <a [routerLink]="['/acoes', row.stock]" 
                    class="inline-flex items-center gap-1 text-blue-500 hover:text-blue-600 font-bold text-sm transition-colors">
                     Visualizar
                     <span class="text-lg">→</span>

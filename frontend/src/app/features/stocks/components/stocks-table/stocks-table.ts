@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { StocksService } from '../../../../core/services/stocks-service';
 import { Observable, combineLatest, map, BehaviorSubject } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-stocks-table',
   standalone: true,
-  imports: [AsyncPipe, CommonModule],
+  imports: [AsyncPipe, CommonModule, RouterLink],
   templateUrl: './stocks-table.html',
 })
 export class StocksTable implements OnInit {
@@ -98,6 +99,12 @@ export class StocksTable implements OnInit {
   setSearch(term: string){
     this.currentPage.next(1);
     this.search.next(term);
+  }
+
+  clearFilter(){
+    this.currentPage.next(1);
+    this.filter.next('Default');
+    this.segment.next('Default');
   }
 
 }
