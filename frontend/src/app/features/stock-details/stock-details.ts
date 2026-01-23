@@ -5,10 +5,11 @@ import { Footer } from "../../core/layout/footer/footer";
 import { StocksService } from '../../core/services/stocks-service';
 import { map, Observable } from 'rxjs';
 import { AsyncPipe, NgIf, NgClass } from '@angular/common';
+import { News } from "../../shared/components/news/news";
 
 @Component({
   selector: 'app-stock-details',
-  imports: [Header, Footer, AsyncPipe, NgIf, NgClass],
+  imports: [Header, Footer, AsyncPipe, NgIf, NgClass, News],
   templateUrl: './stock-details.html',
   styleUrl: './stock-details.css',
 })
