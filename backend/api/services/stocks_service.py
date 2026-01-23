@@ -1,5 +1,4 @@
 from api.clients.brapi_client import get
-from ..clients.brapi_client import get
 
 def list_stocks():
     data = get('/quote/list/')

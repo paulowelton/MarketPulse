@@ -141,14 +141,14 @@
       <button 
         (click)="prevPage()"
         [disabled]="(currentPage | async) === 1"
-        class="flex items-center px-3 py-2 text-sm font-semibold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-sm">
+        class="cursor-pointer items-center px-3 py-2 text-sm font-semibold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-sm">
         ← Anterior
       </button>
       
       <button 
         (click)="nextPage()"
         [disabled]="(currentPage | async) === totalPages"
-        class="flex items-center px-3 py-2 text-sm font-semibold text-white bg-slate-900 rounded-lg hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-sm">
+        class="cursor-pointer items-center px-3 py-2 text-sm font-semibold text-white bg-slate-900 rounded-lg hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-sm">
         Próximo →
       </button>
     </div>
