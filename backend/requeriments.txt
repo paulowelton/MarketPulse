@@ -3,3 +3,5 @@ requests
 dotenv
 Flask-Caching
 flask-cors
+supabase
+bcrypt

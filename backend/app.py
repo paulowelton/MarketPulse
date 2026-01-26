@@ -3,6 +3,7 @@ from api.extensions import cache
 from flask_cors import CORS
 from api.routes.stocks import stocks_bp
 from api.routes.news import news_bp
+from api.routes.auth import auth_bp
 
 config = {
     "DEBUG": True,
@@ -16,6 +17,7 @@ cache.init_app(app)
 
 app.register_blueprint(stocks_bp, url_prefix='/stocks')
 app.register_blueprint(news_bp, url_prefix='/news')
+app.register_blueprint(auth_bp, url_prefix='/auth')
 
 if __name__ == '__main__':
     app.run()

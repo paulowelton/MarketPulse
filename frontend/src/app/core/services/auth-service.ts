@@ -1,0 +1,15 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthService {
+  private registerUserEndpoint = 'http://127.0.0.1:5000/auth/register'
+
+  constructor(private http: HttpClient){}
+
+  registerUser(name: string, email: string, password: string){
+    return this.http.post(this.registerUserEndpoint, {"name": name, "email": email, "password": password})
+  }
+}
