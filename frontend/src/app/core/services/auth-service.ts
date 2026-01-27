@@ -6,10 +6,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
   private registerUserEndpoint = 'http://127.0.0.1:5000/auth/register'
+  private loginUserEndpoint = 'http://127.0.0.1:5000/auth/login'
 
   constructor(private http: HttpClient){}
 
   registerUser(name: string, email: string, password: string){
     return this.http.post(this.registerUserEndpoint, {"name": name, "email": email, "password": password})
+  }
+  
+  loginUser(email: string, password: string){
+    return this.http.post<any>(this.loginUserEndpoint, {"email": email, "password": password})
   }
 }

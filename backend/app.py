@@ -11,13 +11,13 @@ config = {
     "CACHE_DEFAULT_TIMEOUT": 300
 }
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/auth/*": {"origins": "http://localhost:4200"}})
 app.config.from_mapping(config)
 cache.init_app(app)
 
+app.register_blueprint(auth_bp, url_prefix='/auth')
 app.register_blueprint(stocks_bp, url_prefix='/stocks')
 app.register_blueprint(news_bp, url_prefix='/news')
-app.register_blueprint(auth_bp, url_prefix='/auth')
 
 if __name__ == '__main__':
     app.run()

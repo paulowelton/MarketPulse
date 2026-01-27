@@ -20,18 +20,23 @@ export class Register {
   constructor(private authService: AuthService){}
 
   onSubmit(): void {
+    if(this.name == '' || this.email == '' || this.password == '' || this.confirmPassword == ''){
+      this.warn = 'Insira todos os dados'
+      return
+    }
+    
     if (this.password !== this.confirmPassword){
       this.warn = 'As senhas não batem';
       return
     }
 
-    this.warn = '';
+    this.warn = ''
 
     this.authService.registerUser(this.name, this.email, this.password)
     .subscribe({
-      error: err => this.warn = err
+      error: err => console.log(err)
     })
-
+      
     if (!this.warn){
       this.warn = 'Sucesso'
     }
