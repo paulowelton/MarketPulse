@@ -1,7 +1,7 @@
 from api.clients.brapi_client import get
 
 def list_stocks():
-    data = get('/quote/list/')
+    data = get('/quote/list')
     assets = data.get('stocks', [])
 
     stocks = [asset for asset in assets if asset.get('type') == 'stock' and str(asset.get('stock'))[-1] != 'F']
@@ -9,7 +9,7 @@ def list_stocks():
     return stocks if stocks else []
 
 def list_segments():
-    data = get('/quote/list/')
+    data = get('/quote/list')
     return data.get('availableSectors', []) if data else []
 
 def stock_details(ticker: str):

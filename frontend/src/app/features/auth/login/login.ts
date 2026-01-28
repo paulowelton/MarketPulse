@@ -27,8 +27,10 @@ export class Login {
     this.authService.loginUser(this.email, this.password)
       .subscribe({
         next: (response) => {
-          console.log(response)
+          console.log(response);
           if (response.status === 'success') {
+            this.authService.saveToken(response.token);
+
             this.router.navigate(['/'])
           } else {
             this.warn = 'Email ou senha inválidos';

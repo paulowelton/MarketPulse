@@ -5,3 +5,5 @@ Flask-Caching
 flask-cors
 supabase
 bcrypt
+pyjwt
+flask-jwt-extended

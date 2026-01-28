@@ -17,4 +17,16 @@ export class AuthService {
   loginUser(email: string, password: string){
     return this.http.post<any>(this.loginUserEndpoint, {"email": email, "password": password})
   }
+
+  saveToken(token: string){
+    localStorage.setItem('token', token)
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token')
+  }
+
+  logout() {
+    localStorage.removeItem('token')
+  }
 }
