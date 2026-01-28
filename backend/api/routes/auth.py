@@ -2,7 +2,7 @@ import bcrypt
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from api.services.auth_service import register_user
-from api.services.auth_service import get_user_by_email
+from api.services.auth_service import get_user_by_email, get_user_by_id
 
 from api.extensions import cache
 
@@ -40,6 +40,16 @@ def login_user_view():
         "status": "success",
         "token": token
     })
+
+@auth_bp.route('/me', methods=['GET'])
+@jwt_required()
+def me():
+    user_id = int(get_jwt_identity())
+    
+    user = get_user_by_id(user_id)
+    
+    
+    
 
 @auth_bp.route('/private', methods=['GET'])
 @jwt_required()
