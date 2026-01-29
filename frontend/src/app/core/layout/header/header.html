@@ -25,8 +25,16 @@
         </li>
     </ul>
 
-    <div class="flex justify-end gap-6">
-        <button routerLink="/login" class="cursor-pointer border border-white/20 px-5 py-2.5 rounded-lg font-bold transition-all duration-300 hover:bg-white/10 hover:border-white">Entrar</button>
-        <button routerLink="/register" class="cursor-pointer bg-white text-sky-950 px-5 py-2.5 rounded-lg font-bold transition-all duration-300 hover:bg-slate-100 hover:-translate-y-0.5 active:translate-y-0">Cadastrar</button>
+    <div *ngIf="user$ | async as user else loggedOut" class="font-medium flex items-center gap-5">
+        <span>Olá, {{ user.name }}</span>
+        <button (click)="logout()" class="cursor-pointer border border-white/20 px-5 py-2.5 rounded-lg font-bold transition-all duration-300 hover:bg-white/10 hover:border-white">Sair</button>
     </div>
+
+    <ng-template #loggedOut>
+        <div class="flex justify-end gap-6">
+            <button routerLink="/login" class="cursor-pointer border border-white/20 px-5 py-2.5 rounded-lg font-bold transition-all duration-300 hover:bg-white/10 hover:border-white">Entrar</button>
+            <button routerLink="/register" class="cursor-pointer bg-white text-sky-950 px-5 py-2.5 rounded-lg font-bold transition-all duration-300 hover:bg-slate-100 hover:-translate-y-0.5 active:translate-y-0">Cadastrar</button>
+        </div>
+    </ng-template>
+
 </header>

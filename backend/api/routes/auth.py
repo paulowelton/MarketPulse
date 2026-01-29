@@ -48,7 +48,10 @@ def me():
     
     user = get_user_by_id(user_id)
     
+    if not user:
+        return jsonify({"status": "error"}), 401
     
+    return jsonify({"status": "success", "user": user}), 200
     
 
 @auth_bp.route('/private', methods=['GET'])

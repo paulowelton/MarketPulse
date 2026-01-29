@@ -22,7 +22,6 @@ export class StocksSection implements OnInit{
   
   ngOnInit(): void {
     this.stocks$ = this.stocksServices.getStocks()
-    this.stocksServices.getStocks().subscribe({next: (res) => {console.log(res)}})
 
     this.riseStocks$ = this.stocks$.pipe(
       map(stocks => [...stocks].sort((a,b) => b.market_cap - a.market_cap).slice(0,7))

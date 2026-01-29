@@ -48,16 +48,17 @@ def get_user_by_email(email):
     
     return user
 
-def get_user_by_id(id):
+def get_user_by_id(user_id):
     response = (
         supabase
         .table("users")
         .select("*")
-        .eq("id", id)
+        .eq("id", int(user_id))
+        .maybe_single() 
         .execute()
     )
-    
-    return response
+    return response.data
 
 if __name__ == '__main__':
-    print(get_user_by_email(10))
+    user = get_user_by_id(10)
+    print(user)
