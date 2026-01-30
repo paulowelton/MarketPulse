@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../../core/services/auth-service';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,10 @@ export class Register {
   confirmPassword: string = '';
   warn: string = '';
 
-  constructor(private authService: AuthService){}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ){}
 
   onSubmit(): void {
     if(this.name == '' || this.email == '' || this.password == '' || this.confirmPassword == ''){
@@ -39,6 +43,8 @@ export class Register {
       
     if (!this.warn){
       this.warn = 'Sucesso'
+
+      this.router.navigate(['/login'])
     }
 
   }

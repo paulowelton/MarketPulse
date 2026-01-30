@@ -15,13 +15,6 @@ export class App implements OnInit{
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    if (this.authService.getToken()){
-      this.authService.getMe().subscribe(
-        {
-          next: (user) => {this.authService.setUser(user.user), console.log(user.user)},
-          error: () => this.authService.clearUser()
-        }
-      )
-    }
+    this.authService.initAuth()
   }
 }

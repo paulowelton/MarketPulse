@@ -7,6 +7,7 @@ from api.extensions import cache
 from api.routes.stocks import stocks_bp
 from api.routes.news import news_bp
 from api.routes.auth import auth_bp
+from api.routes.funds import funds_bp
 
 config = {
     "DEBUG": True,
@@ -24,6 +25,7 @@ CORS(app)
 
 app.register_blueprint(auth_bp, url_prefix='/auth')
 app.register_blueprint(stocks_bp, url_prefix='/stocks')
+app.register_blueprint(funds_bp, url_prefix='/funds')
 app.register_blueprint(news_bp, url_prefix='/news')
 
 if __name__ == '__main__':

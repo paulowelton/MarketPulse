@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +15,15 @@ export class AuthService {
   user$ = this.userSubject.asObservable();
 
   constructor(private http: HttpClient){}
+
+  initAuth() {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+
+    this.getMe().subscribe(res => {
+      this.setUser(res.user);
+    });
+  }
 
   setUser(user: any){
     console.log('set user:', user)
