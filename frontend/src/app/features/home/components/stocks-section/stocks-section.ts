@@ -16,7 +16,11 @@ export class StocksSection implements OnInit{
   riseStocks$!: Observable<any[]>;
   downStocks$!: Observable<any[]>;
   volumeStocks$!: Observable<any[]>;
+
+  ibov$!: Observable<Number>;
+  ibovPercent$!: Observable<Number>;
   segments$!: Observable<Number>;
+  amountStocks$!: Observable<Number>;
 
   constructor(private stocksServices: StocksService) {}
   
@@ -35,8 +39,20 @@ export class StocksSection implements OnInit{
       map(stocks => [...stocks].sort((a,b) => b.volume - a.volume).slice(0,7))
     )
 
+    this.ibov$ = this.stocksServices.getStockDetail('^BVSP').pipe(
+      map(res => res[0].regularMarketPrice)
+    );
+    
+    this.ibovPercent$ = this.stocksServices.getStockDetail('^BVSP').pipe(
+      map(res => res[0].regularMarketChangePercent)
+    );
+    
     this.segments$ = this.stocksServices.getSegments().pipe(
       map(segments => segments.length)
+    )
+    
+    this.amountStocks$ = this.stocksServices.getStocks().pipe(
+      map(amount => amount.length)
     )
     
   }

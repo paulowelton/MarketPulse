@@ -6,10 +6,9 @@
         </a>
 
         <div class="flex justify-center gap-10">
-            <app-kpi-card title="Ibovespa" variation="-20"></app-kpi-card>
-            <app-kpi-card title="Empresas"></app-kpi-card>
+            <app-kpi-card title="Pts Ibovespa" [value]="ibov$ | async" [variation]="ibovPercent$ | async"></app-kpi-card>
+            <app-kpi-card title="Ações" [value]="amountStocks$ | async"></app-kpi-card>
             <app-kpi-card title="Segmentos" [value]="segments$ | async"></app-kpi-card>
-            <app-kpi-card title="IPO"></app-kpi-card>
         </div>
     </div>
     
