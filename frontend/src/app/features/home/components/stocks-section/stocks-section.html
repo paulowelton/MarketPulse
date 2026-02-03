@@ -1,20 +1,24 @@
-<section class="px-10 py-5">
-    <div class="flex justify-between items-center">
-        <a href="/acoes" class="relative text-4xl font-bold inline-block">
-            Ações do Brasil
-            <span class="absolute left-0 -bottom-1 w-full h-0.5 bg-[#000]"></span>
-        </a>
+<section class="max-w-[1600px] mx-auto px-10 py-10">
+    
+    <div class="flex flex-col lg:flex-row justify-between items-end border-b-2 border-slate-100 pb-6 mb-12">
+        <div>
+            <h1 class="text-4xl font-black text-slate-900 tracking-tight">
+                Ações do Brasil
+            </h1>
+            <p class="text-slate-400 text-xs font-bold uppercase tracking-widest mt-1">Visão Geral do Mercado</p>
+        </div>
 
-        <div class="flex justify-center gap-10">
+        <div class="flex gap-10 mt-6 lg:mt-0">
             <app-kpi-card title="Pts Ibovespa" [value]="ibov$ | async" [variation]="ibovPercent$ | async"></app-kpi-card>
             <app-kpi-card title="Ações" [value]="amountStocks$ | async"></app-kpi-card>
             <app-kpi-card title="Segmentos" [value]="segments$ | async"></app-kpi-card>
         </div>
     </div>
-    
-    <div class="flex justify-around mt-10">
-        <app-asset-table title="Empresas Mais Caras" [rows]="riseStocks$ | async"></app-asset-table>
-        <app-asset-table title="Empresa Mais Baratas" [rows]="downStocks$ | async"></app-asset-table>
-        <app-asset-table title="maior Volume" [rows]="volumeStocks$ | async"></app-asset-table>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <app-asset-table title="Maiores Altas" [rows]="riseStocks$ | async"></app-asset-table>
+        <app-asset-table title="Maiores Baixas" [rows]="downStocks$ | async"></app-asset-table>
+        <app-asset-table title="Maior Volume" [rows]="volumeStocks$ | async"></app-asset-table>
     </div>
-</section> 
+
+</section>
